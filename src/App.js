@@ -1,12 +1,21 @@
 import React from 'react';
 import './App.css';
 import {rerender} from "./index";
+import Card from "./components/Card";
+import SearchForm from "./components/SearchForm";
+import CardList from "./components/CardList";
 
-let allRepo = [];
+export let allRepo = [];
 
+export let requestParam = {
+  name: '',
+  language: 'C',
+  status: false
+}
 
-let getAllRepo = () => {
-  let url = 'https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc';
+export let getAllRepo = (name, language, status) => {
+  let url = `https://api.github.com/search/repositories?q=${name}+language:${language}+is:${status ? 'private' : 'public'}&sort=stars&order=desc&`;
+  console.log(url)
   return fetch(url)
     .then(response => response.json())
     .then(item => {
@@ -15,35 +24,28 @@ let getAllRepo = () => {
     });
 }
 
-function Card(props){
-    return  <div key={props.index} style={{background: "lightblue"}}>
-      <h1>{props.data.name}</h1>
-      <p>{props.data.description}</p>
-      <h4>{props.data.language}</h4>
-      <h6>{props.data.private ? 'private' : 'public'}</h6>
-    </div>
 
+export function selectCriteria(e) {
+  let name = e.target.name;
+  let value = e.target.value;
+  if (name === 'status') {
+    value = e.target.checked;
+  }
+  requestParam[name] = value;
+  rerender()
 }
+
+export function inputRepoName(e) {
+  requestParam.name = e.target.value;
+  rerender();
+}
+
 
 function App() {
   return (
     <div className="App">
-      {allRepo.length > 0 ? allRepo.map((item, index) => <Card key={index} data={item}/>): <h1>no repo ;(</h1> }
-      <div className='searchForm'>
-        <input/>
-        <div>
-          <input type='checkbox'/>
-          <input type='checkbox'/>
-          <input type='checkbox'/>
-        </div>
-      </div>
-      <div className='result'>
-        <div>repo1</div>
-        <div>repo2</div>
-        <div>repo3</div>
-      </div>
-
-      <input type='button' onClick={getAllRepo} value='get repo'/>
+      <SearchForm/>
+      <CardList allRepo={allRepo}/>
     </div>
   );
 }
