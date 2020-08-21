@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import {rerender} from "./index";
-import Card from "./components/Card";
 import SearchForm from "./components/SearchForm";
 import CardList from "./components/CardList";
 
