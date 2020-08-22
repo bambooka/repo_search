@@ -1,0 +1,3 @@
+export const SELECT_CRITERIA = 'SELECT_CRITERIA';
+export const INPUT_REPO_NAME = 'INPUT_REPO_NAME';
+export const GET_ALL_REPO = 'GET_ALL_REPO';
