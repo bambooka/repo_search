@@ -3,7 +3,8 @@ const initialState = {
   inputText: '',
   selectedOption: 'Java'
 }
-export const rootReducer = (state = initialState, action) => {
+
+export const selectorReducer = (state = initialState, action) => {
   if (action.type === 'CHANGE_INPUT') {
     return {...state, inputText: action.inputData}
   } else if (action.type === 'SELECT_OPTION') {
@@ -14,4 +15,3 @@ export const rootReducer = (state = initialState, action) => {
     return state
   }
 }
-
