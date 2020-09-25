@@ -1,5 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
+import {changeInputActionCreator} from "../redux/actionCreators/changeInputActionCreator";
+import {selectOptionActionCreator} from "../redux/actionCreators/selectOptionActionCreator";
 
 
 
@@ -12,14 +14,14 @@ const SearchForm = ({props, dispatch}) => {
     }} className='searchForm'>
       <input
         value={data.inputText}
-        onChange={(e) => dispatch({type: 'CHANGE_INPUT', inputData: e.target.value})}
+        onChange={(e) => dispatch(changeInputActionCreator(e.target.value))}
         type='input'
         placeholder='input app name'/>
       <div>
         {data.languages.map((lg, index) => {
           return <><input
             checked={data.selectedOption === lg}
-            onChange={(e) => dispatch({type: 'SELECT_OPTION', selectedOption: e.target.value})}
+            onChange={(e) => dispatch(selectOptionActionCreator(e.target.value))}
             name='language'
             key={index}
             type='radio'
