@@ -2,14 +2,15 @@ import React from "react";
 import {connect} from "react-redux";
 import {changeInputActionCreator} from "../redux/actionCreators/changeInputActionCreator";
 import {selectOptionActionCreator} from "../redux/actionCreators/selectOptionActionCreator";
-
-
+import {fetchingDataActionCreator} from "../redux/actionCreators/fetchingDataActionCreator";
 
 const SearchForm = ({props, dispatch}) => {
   const data = props.selectorData;
   return (
     <form onSubmit={(e) => {
       e.preventDefault();
+      // console.log(fetchingDataActionCreator())
+      dispatch(fetchingDataActionCreator(data))
       dispatch({type: 'CLEAR_INPUT'})
     }} className='searchForm'>
       <input

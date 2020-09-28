@@ -3,10 +3,13 @@ import RepoItem from "./RepoItem";
 import {connect} from "react-redux";
 
 const RepoList = (props) => {
-  console.log(props)
+  const repos = props.props.repoData.repoData;
+  console.log(props.props.repoData.repoData, 'from list')
   return (
     <div className='result'>
-      <RepoItem />
+      {repos.map(repo => {
+        return <RepoItem repo={repo}/>
+      })}
     </div>
   )
 }

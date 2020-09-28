@@ -1,17 +1,11 @@
 import React from "react";
-import {connect} from "react-redux";
 const RepoItem = (props) => {
+  console.log(props, 'from item')
   return (
     <div className='repo-item'>
-      {}
+      {<h1>{props.repo.name}</h1>}
     </div>
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    props: state
-  }
-}
-
-export default connect(mapStateToProps, null)(RepoItem);
+export default RepoItem;
