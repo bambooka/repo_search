@@ -4,9 +4,11 @@ import RepoList from "./components/RepoList";
 
 function App() {
   return (
-    <div>
-      <SearchForm/>
-      <RepoList/>
+    <div className='container-fluid'>
+      <div className='col'>
+        <SearchForm />
+        <RepoList />
+      </div>
     </div>
   );
 }

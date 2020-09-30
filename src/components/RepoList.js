@@ -6,7 +6,7 @@ const RepoList = (props) => {
   const repos = props.props.repoData.repoData;
   console.log(props.props.repoData.repoData, 'from list')
   return (
-    <div className='result'>
+    <div className='row align-self-center'>
       {repos.map(repo => {
         return <RepoItem repo={repo}/>
       })}
