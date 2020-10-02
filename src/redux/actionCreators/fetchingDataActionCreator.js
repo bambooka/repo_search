@@ -1,4 +1,4 @@
-import {FETCH_DATA} from "../actionTypes";
+import {FETCH_DATA, HIDE_LOADER} from "../actionTypes";
 
 export const fetchingDataActionCreator = (data) => {
   // debugger
@@ -8,6 +8,7 @@ export const fetchingDataActionCreator = (data) => {
     // console.log(response)
     const json = await response.json();
     console.log(json.items, 'from server')
+    dispatch({type: HIDE_LOADER})
     dispatch({type: FETCH_DATA, repoData: json.items})
   }
   // const response = fetch(`https://api.github.com/search/repositories?q=${data.inputText}+language:${data.selectedOption}&sort=stars&order=desc&`);
