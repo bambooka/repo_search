@@ -4,17 +4,31 @@ import {changeInputActionCreator} from "../redux/actionCreators/changeInputActio
 import {selectOptionActionCreator} from "../redux/actionCreators/selectOptionActionCreator";
 import {fetchingDataActionCreator} from "../redux/actionCreators/fetchingDataActionCreator";
 import {showLoaderActionCreator} from "../redux/actionCreators/showLoaderActionCreator";
+import {hideAlertActionCreator, showAlertActionCreator} from "../redux/actionCreators/alertActionCreator";
 
 const SearchForm = ({props, dispatch}) => {
   const data = props.selectorData;
   return (<>
       <form className='align-self-center' onSubmit={(e) => {
         e.preventDefault();
-        // console.log(fetchingDataActionCreator())
-        dispatch(fetchingDataActionCreator(data))
-        dispatch(showLoaderActionCreator())
-        dispatch({type: 'CLEAR_INPUT'})
+        console.log(props.selectorData.inputText)
+        if(props.selectorData.inputText.length > 0) {
+          dispatch(fetchingDataActionCreator(data))
+          dispatch(showLoaderActionCreator())
+          dispatch({type: 'CLEAR_INPUT'})
+        } else {
+          dispatch(showAlertActionCreator('Input is empty'))
+          setTimeout(() => {
+            dispatch(hideAlertActionCreator())
+          }, 2000)
+        }
       }}>
+        {props.alert.alert
+          ? <div className="alert alert-info" role="alert">
+            {props.alert.alert}
+          </div>
+        : null
+        }
         <div className="form-group">
           <label htmlFor="inputRepoName">Repo name</label>
           <input
