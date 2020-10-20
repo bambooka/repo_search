@@ -8,7 +8,7 @@ const RepoItem = (props) => {
               <h5 className="card-title">{props.repo.name}</h5>
               <p className="card-text">{props.repo.description}</p>
               <p className="card-text">{props.repo.language}</p>
-              <a href={props.repo.git_url} className="btn btn-primary">Go to repo</a>
+              <a href={props.repo.html_url} className="btn btn-primary">Go to repo</a>
             </div>
         </div>
       }
